@@ -1,0 +1,6 @@
+CREATE TABLE Curso (
+    id SERIAL NOT NULL,
+    nome VARCHAR(255) NOT NULL,
+    categoria VARCHAR(255) NOT NULL,
+    CONSTRAINT pk_curso PRIMARY KEY (id)
+);
