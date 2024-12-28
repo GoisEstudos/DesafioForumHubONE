@@ -1,0 +1,10 @@
+package com.bielsoft.desafioForumHubONE.dtos;
+
+import jakarta.validation.constraints.NotBlank;
+
+public record PerfilDTO(
+        @NotBlank
+        Long id,
+        @NotBlank
+        String nome) {
+}

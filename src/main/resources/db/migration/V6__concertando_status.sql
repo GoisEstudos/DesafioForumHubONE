@@ -1,0 +1,2 @@
+ALTER TABLE topico ALTER COLUMN status SET DEFAULT 'pendente';
+ALTER TABLE topico ALTER COLUMN status DROP NOT NULL;

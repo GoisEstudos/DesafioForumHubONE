@@ -1,0 +1,11 @@
+package com.bielsoft.desafioForumHubONE.dtos;
+
+import jakarta.validation.constraints.NotBlank;
+
+public record TopicoInputDTO(
+        @NotBlank(message = "O título é obrigatório e não pode ser nulo ou vazio")
+        String titulo,
+        @NotBlank(message = "A mensagem é obrigatória e não pode ser nula ou vazia")
+        Long usuarioId,
+        Long cursoId
+) {}
