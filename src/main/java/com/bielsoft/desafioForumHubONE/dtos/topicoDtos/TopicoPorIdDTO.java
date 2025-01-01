@@ -1,7 +1,7 @@
 package com.bielsoft.desafioForumHubONE.dtos.topicoDtos;
 
 import com.bielsoft.desafioForumHubONE.dtos.CursoDTO;
-import com.bielsoft.desafioForumHubONE.dtos.UsuarioDTO;
+import com.bielsoft.desafioForumHubONE.dtos.usuarioDtos.UsuarioDTO;
 import com.bielsoft.desafioForumHubONE.entities.Topico;
 import com.bielsoft.desafioForumHubONE.enums.StatusEnum;
 

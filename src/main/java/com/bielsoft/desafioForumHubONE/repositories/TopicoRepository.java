@@ -13,6 +13,8 @@ import java.util.Optional;
 public interface TopicoRepository extends JpaRepository<Topico, Long> {
     Boolean existsByTituloIgnoreCase(String titulo);
 
+    Boolean existsByMensagemIgnoreCase(String mensagem);
+
     List<Topico> findAllByStatusOrderByDataCriacaoAsc(StatusEnum status,Pageable pageable);
 
     Optional<Topico> findByIdAndStatus(Long id, StatusEnum status);

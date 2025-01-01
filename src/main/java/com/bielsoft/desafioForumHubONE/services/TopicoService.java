@@ -37,7 +37,7 @@ public class TopicoService {
     public List<TopicoListarTodosDTO> listar() {
         StatusEnum statusAtivo = StatusEnum.ATIVO;
         Pageable pageable = PageRequest.of(0, 10);
-        return topicoRepository.findAllByStatusOrderByDataCriacaoAsc(statusAtivo,pageable).stream().map(TopicoListarTodosDTO::new).collect(Collectors.toList());
+        return topicoRepository.findAllByStatusOrderByDataCriacaoAsc(statusAtivo, pageable).stream().map(TopicoListarTodosDTO::new).collect(Collectors.toList());
     }
 
     public TopicoPorIdDTO listarPorId(Long id) {
@@ -48,7 +48,7 @@ public class TopicoService {
     }
 
     public TopicoCriarDTO criar(@Valid TopicoCriarDTO dto) {
-        if (existeTituloCriar(dto)) {
+        if (existeTituloMensagemCriar(dto)) {
             throw new TituloCadastradoException("Titulo ja cadastrado");
         }
         Usuario usuario = usuarioRepository.findById(dto.usuarioId()).orElseThrow(RuntimeException::new);
@@ -66,7 +66,7 @@ public class TopicoService {
     }
 
     public TopicoAtualizarDTO atualizar(TopicoAtualizarDTO dto) {
-        if (existeTituloAtualizar(dto)) {
+        if (existeTituloMensagemAtualizar(dto)) {
             throw new TituloCadastradoException("Titulo ja cadastrado");
         }
 
@@ -96,11 +96,18 @@ public class TopicoService {
         topicoRepository.save(topico);
     }
 
-    public Boolean existeTituloCriar(TopicoCriarDTO dto) {
-        return topicoRepository.existsByTituloIgnoreCase(dto.titulo());
+    public Boolean existeTituloMensagemCriar(TopicoCriarDTO dto) {
+
+        if (topicoRepository.existsByTituloIgnoreCase(dto.titulo()) && topicoRepository.existsByMensagemIgnoreCase(dto.mensagem())) {
+            throw new TituloCadastradoException("Titulo ou Mensagem ja cadastrado");
+        }
+        return false;
     }
 
-    public Boolean existeTituloAtualizar(TopicoAtualizarDTO dto) {
-        return topicoRepository.existsByTituloIgnoreCase(dto.titulo());
+    public Boolean existeTituloMensagemAtualizar(TopicoAtualizarDTO dto) {
+        if (topicoRepository.existsByTituloIgnoreCase(dto.titulo()) && topicoRepository.existsByMensagemIgnoreCase(dto.mensagem())) {
+            throw new TituloCadastradoException("Titulo ou Mensagem ja cadastrado");
+        }
+        return false;
     }
 }

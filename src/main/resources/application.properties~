@@ -1,9 +1,9 @@
 spring.application.name=desafioForumHubONE
 
 # Configurações de conexão com o banco de dados PostgreSQL
-spring.datasource.url=${DB_URL}
-spring.datasource.username=${DB_USER}
-spring.datasource.password=${DB_PASSWORD}
+spring.datasource.url= ${DB_URL}
+spring.datasource.username= ${DB_USER}
+spring.datasource.password= ${DB_PASSWORD}
 spring.datasource.driver-class-name=org.postgresql.Driver
 
 # Configurações de JPA/Hibernate
@@ -11,3 +11,6 @@ spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
 spring.jpa.properties.hibernate.format_sql=true
+
+jwt.private.key=classpath:/app.key
+jwt.public.key=classpath:/app.pub

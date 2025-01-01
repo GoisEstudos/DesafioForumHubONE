@@ -1,13 +1,16 @@
 package com.bielsoft.desafioForumHubONE.entities;
 
-import com.bielsoft.desafioForumHubONE.dtos.PerfilDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -24,7 +27,13 @@ public class Usuario {
     private String nome;
     private String email;
     private String senha;
-    @OneToMany(mappedBy = "usuario")
+    @OneToOne(mappedBy = "usuario")
+    @JoinColumn(name = "perfil_id", nullable = false)
     @JsonBackReference
-    private List<Perfil> perfil;
+    private Perfil perfil;
+
+    public Usuario(String nome, String senha) {
+        this.nome = nome;
+        this.senha = senha;
+    }
 }

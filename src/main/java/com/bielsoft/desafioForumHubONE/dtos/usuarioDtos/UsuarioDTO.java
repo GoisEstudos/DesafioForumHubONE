@@ -1,10 +1,7 @@
-package com.bielsoft.desafioForumHubONE.dtos;
+package com.bielsoft.desafioForumHubONE.dtos.usuarioDtos;
 
-import com.bielsoft.desafioForumHubONE.entities.Perfil;
 import com.bielsoft.desafioForumHubONE.entities.Usuario;
 import jakarta.validation.constraints.NotBlank;
-
-import java.util.List;
 
 public record UsuarioDTO(
         @NotBlank(message = "O id é obrigatório e nao pode ser nullo ou vazio")
